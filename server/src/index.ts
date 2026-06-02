@@ -13,7 +13,12 @@ if (!process.env.OPENAI_API_KEY) {
 const app = express();
 const port = 5001;
 
-app.use(cors({ origin: /^http:\/\/localhost(:\d+)?$/ }));
+const allowedOrigins = [
+  /^http:\/\/localhost(:\d+)?$/,
+  /\.netlify\.app$/,
+  /\.onrender\.com$/,
+];
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
