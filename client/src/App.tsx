@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import "./App.css";
+const baseURL = import.meta.env.VITE_BASE_URL || 'http://localhost:5001';
 
 type Role = "user" | "assistant";
 
@@ -9,7 +10,7 @@ interface Message {
   timestamp: Date;
 }
 
-const BACKEND_URL = "http://localhost:5001";
+const BACKEND_URL = import.meta.env.VITE_BASE_URL || "http://localhost:5001";
 
 function App() {
   const [messages, setMessages] = useState<Message[]>([]);
